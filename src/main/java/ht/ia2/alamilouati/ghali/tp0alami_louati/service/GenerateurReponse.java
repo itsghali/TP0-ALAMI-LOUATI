@@ -24,13 +24,11 @@ public class GenerateurReponse implements Serializable { // Serializable car CDI
      * puis la question en minuscule, le tout entouré de "||".
      */
     public String genererReponse(String question, String roleSysteme) {
-        String resultat = "||";
-        if (!this.roleSystemeAffiche && roleSysteme != null) {
-            // Ajouter le rôle système en majuscule au début du résultat, suivi d'un saut de ligne.
-            resultat += roleSysteme.toUpperCase(Locale.FRENCH) + "\n";
-            this.roleSystemeAffiche = true;
-        }
-        resultat += question.toLowerCase(Locale.FRENCH) + "||";
-        return resultat;
+        String texte = question.strip();
+        int nombreMots = texte.split("\\s+").length;
+
+        return "Question en majuscules : "
+                + texte.toUpperCase(Locale.FRENCH)
+                + "\nNombre de mots : " + nombreMots;
     }
 }
